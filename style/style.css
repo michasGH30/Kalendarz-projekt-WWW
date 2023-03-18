@@ -35,8 +35,19 @@ body {
 	text-shadow: -1px 10px 5px rgba(140, 0, 248, 0.718);
 }
 
-.container {
+.container,
+.container_login {
 	display: flex;
+}
+
+.container_login {
+	align-items: center;
+	justify-content: center;
+}
+
+.container_login .main p {
+	padding: 10px;
+	margin-bottom: -10px;
 }
 .nav {
 	/* http://cliparts.co/notepad-clip-art */
@@ -99,17 +110,27 @@ body {
 
 .change {
 	cursor: pointer;
-	font-size: 35px;
 	margin-left: 5px;
 	margin-right: 15px;
 	margin-bottom: 20px;
 	margin-top: 15px;
-	color: #ff00ff;
 }
 
-.change:hover {
-	/* https://cssgenerator.org/text-shadow-css-generator.html */
-	text-shadow: -1px 5px 2px rgba(183, 88, 255, 0.718);
+.profile {
+	display: block;
+}
+
+.profile:hover {
+	opacity: 0.9;
+}
+
+.profile:active {
+	transform: scale(0.95);
+}
+
+.profile_img {
+	width: 75px;
+	height: 75px;
 }
 
 .footer {
@@ -121,6 +142,15 @@ body {
 	color: #1b00ff;
 	padding-top: 25px;
 	font-size: 20px;
+}
+
+.footer a {
+	color: #1b00ff;
+	text-decoration: none;
+}
+
+.footer a:hover {
+	color: red;
 }
 
 /* https://devsdash.com/tools/css-button-generator */
@@ -157,10 +187,15 @@ a.al:active {
 	transform: scale(0.95);
 }
 
-.day_name {
+.day_name,
+.day_name_weekend {
 	background-color: #4657f1;
 	padding: 2px;
 	font-size: 20px;
+}
+
+.day_name_weekend {
+	background-color: red;
 }
 
 .meeting {
@@ -168,4 +203,259 @@ a.al:active {
 	padding: 1px;
 	background-color: green;
 	margin: 3px;
+}
+
+.login_form {
+	padding: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"] {
+	margin: 10px;
+	font-size: 25px;
+}
+
+.search_icon {
+	width: 20%;
+	padding: 10px;
+	background: #2196f3;
+	color: white;
+	font-size: 20px;
+	border: 1px solid grey;
+	cursor: pointer;
+}
+
+.search_icon:hover {
+	background: #0b7dda;
+}
+
+/* https://buttonoptimizer.com/ */
+
+.login_button,
+.register_button {
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	padding: 12px 24px;
+	border-radius: 8px;
+	color: #ffffff;
+	text-decoration: none;
+	margin: 20px;
+	font-size: 25px;
+}
+
+.login_button:active,
+.register_button:active {
+	transform: scale(0.95);
+}
+
+.login_button::before,
+.register_button::before {
+	content: "\0000a0";
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+	line-height: 24px;
+	margin: 0 4px -6px -4px;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	background-size: 100% 100%;
+}
+
+.register_button:hover,
+.register_button:focus,
+.login_button:hover,
+.login_button:focus {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.login_button {
+	border: 1px solid #16ae24;
+	background: #25ff3b;
+	background: -webkit-gradient(linear, left top, left bottom, from(#25ff3b), to(#16ae24));
+	background: -moz-linear-gradient(top, #25ff3b, #16ae24);
+	background: linear-gradient(to bottom, #25ff3b, #16ae24);
+}
+.login_button:hover,
+.login_button:focus {
+	border: 1px solid #20f933;
+	background: #13b329;
+}
+.login_button:active {
+	background: #16ae24;
+	background: -webkit-gradient(linear, left top, left bottom, from(#16ae24), to(#16ae24));
+	background: -moz-linear-gradient(top, #16ae24, #16ae24);
+	background: linear-gradient(to bottom, #16ae24, #16ae24);
+}
+.login_button:before {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA+klEQVRIid2UMQ6CQBBFH9IYjFfwAMbCEA9gPIbxEBTewjsZeyoS4w2Mib0QCsWC0SBhF2bRxp9MA3//m8wsQLsCIAJiIJOK5VnQ4bxVEyABCkMl4nFS0BJehQxdAFGH8FdFLoBYAYhdAJkCkJlCPAugUDbUmDWwHHgowo1eG+CqABi9NsBeAdB43wqBnPYF5+J10ha4W8Lv4umlNXBuCD/LO6vqVysAVsAUGEmHvjxfAjPxHYEDkFY8N+BEuY/U1OmloVNtXYBNPbxt1tr62M2CbrdFWzkQ+sAOmDfNrKd8YAzfmbtxHx7lvGxfdB89PPR/TZV+1fkfAZ4LjLpNu4MjfwAAAABJRU5ErkJggg==")
+		no-repeat left center transparent;
+}
+
+.register_button {
+	border: 1px solid #074276;
+	background: #0d7dde;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0d7dde), to(#074276));
+	background: -moz-linear-gradient(top, #0d7dde, #074276);
+	background: linear-gradient(to bottom, #0d7dde, #074276);
+}
+.register_button:hover,
+.register_button:focus {
+	border: 1px solid #084e8b;
+	background: #1096ff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#1096ff), to(#084f8e));
+	background: -moz-linear-gradient(top, #1096ff, #084f8e);
+	background: linear-gradient(to bottom, #1096ff, #084f8e);
+}
+.register_button:active {
+	background: #074276;
+	background: -webkit-gradient(linear, left top, left bottom, from(#074276), to(#074276));
+	background: -moz-linear-gradient(top, #074276, #074276);
+	background: linear-gradient(to bottom, #074276, #074276);
+}
+.register_button:before {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEGklEQVRIibWVwW8bRRTGf2/Wu7Gd9cZqnaZN0oBaiQOES6k4IODICaRyrEq55YZQERJIERw5wLkVXEEIQUH9A5KCqhxQwUUCKVJQhEIFVZomlevYzmayuzPDwZvUsR0OSOzoaWffzvu+ee/NewP/8yP/xehBswMQAhFQBZoT1XB92NpC78ffm42ZIAhmgGNALZdxoCZQc3BMHuuLQJBjvA98AjA/Pz+9uLi4Xq/X7QABcE2EV49y8ih3BYKpqSnm5uYupGn66crKyjNAA0D1LdRC/+CwyGNRuYgwevny5bcLhcK3q6urH3U6ncbQEIGLpW+bSZKSpMmhbewvSbOM6tgYt24uvFGpVCYbjcYXW1tbn/Xa94eoJSK02h0EUEqRZRnF4gjGGKxzhxZ7SrGy/BtLt36Y9n3/u3q9Pre0tJT9G0FTgLGocqBI0xQceMrDWIO1Fme7RKurv3Pj+jfUxmu/Xrt69WKj0cj68A7nAGe3RAQFOGt5sLmJ1po0TXDOokRwzoHA3T//4Mb1rymNhlx59z07DHyAwBq7oUQQEQqex+TEBKWRERDBGANAqTjC5v11fvnpNmE0xvwHH+L7hUnnnBpGcChExmT3wCF5prvxL1ICtttt0jTl7toaX335OZ5X4K0r7yACnlInrHUzzrl7InJ0Dqy1f+EcSinSLGO71WYsqhD4PtWowsbGfR5ubjA7+ywXL11Ccs88JcrinldI4pzbEBE7lADnHjrnmiJSDXyfidpxADpxjLWWmwsLRFHEaxdeJ97VCJCkKaXjRQSeA9aAOMcYJBBBg1tTIucQaLXaxLuaUqmIAC+8+BKe57Ebx1TCEN/3CctlcqyngZNAJ5dsIMlnnpgBa5eVdH9UowqTE+NUowpKKU6dOkkYhlhreNR8xPb2Nrta53UjTwEncjnm8prprwMyY+qIvIlzJGmGCDjn8DxFWC5TjSqAoPUuaZqiBHSSYK2dVsrrbZJNIBk4Wsne3m2cIzMGvafRWlMoeFhr8x7UPcblUpkoivADn8wYkjQpG2tPA2W6bbw81ANjzLIxphn4fjXw/cf5yYcxFr23d1AXAhQ8D08pnLVPolQ9xw2cc4MEp6endGdn52cR/5VefRD4bHc6FJSiVCried4BAXTDaK09A8TAQXccWn1Zmn3f36bLxRGqlQrh6Cie8g70++BJkpAkyUyz1dbG2FZONOgBZ8/TaDYXwnD0Y1FdfmsMO3Fsd3Z2tNZaG2M6SikNEislGogDP+iUyuVllFrNjNn0PBWLSB/B2fMAweKPd5ovn9tdStO0lWVZ0znXDMNKa7xWa9dqNR34vs7DkAE2nyfAHWAdsPuFNvQWdM7NAmd6DHUOlvRI1qPbn7ek78YaIMgLpJbvbN/Q9gk9b/pBe59/ANcj6QVYIme8AAAAAElFTkSuQmCC")
+		no-repeat left center transparent;
+}
+
+.delete_friend_button {
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	padding: 12px 24px;
+	border: 1px solid #aa0305;
+	border-radius: 8px;
+	background: #ff060a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff060a), to(#aa0305));
+	background: -moz-linear-gradient(top, #ff060a, #aa0305);
+	background: linear-gradient(to bottom, #ff060a, #aa0305);
+	font-size: 20px;
+	color: #ffffff;
+	text-decoration: none;
+}
+.delete_friend_button:hover,
+.delete_friend_button:focus {
+	border: 1px solid #c80406;
+	background: #ff070c;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff070c), to(#cc0406));
+	background: -moz-linear-gradient(top, #ff070c, #cc0406);
+	background: linear-gradient(to bottom, #ff070c, #cc0406);
+	color: #ffffff;
+	text-decoration: none;
+}
+.delete_friend_button:active {
+	background: #aa0305;
+	background: -webkit-gradient(linear, left top, left bottom, from(#aa0305), to(#aa0305));
+	background: -moz-linear-gradient(top, #aa0305, #aa0305);
+	background: linear-gradient(to bottom, #aa0305, #aa0305);
+	transform: scale(0.95);
+}
+.delete_friend_button:before {
+	content: "\0000a0";
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+	line-height: 24px;
+	margin: 0 4px -6px -4px;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAg0lEQVRIie2VsQqAIBRFTyEO9RFtfU//v4RT/UANEdgiIqbFa2l5Bx6KPu/RSVA+0iU1AjPgs3JhL+290VTCXXLAALZykQM4w3wHhjBGzMsL3rAPcqD8glQiYS8tPgk2oaCXCrxQUMxqhSFiVKACFfwsWAU5kt7IBCzcP5q8ltCrfOMCYqkauSTV5I0AAAAASUVORK5CYII=")
+		no-repeat left center transparent;
+	background-size: 100% 100%;
+}
+
+.friends {
+	display: flex;
+}
+
+.friend_profile {
+	width: 50px;
+	height: 50px;
+	margin-left: 5px;
+}
+
+.my_friend {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.my_friend_p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 0 0 50%;
+}
+
+.friends_list {
+	max-height: 45vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.users {
+	max-height: 45vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.friends_tab {
+	padding: 5px;
+	margin: 5px;
+	width: 50vh;
+}
+
+.add_f_button {
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	padding: 12px 24px;
+	border: 1px solid #30ab19;
+	border-radius: 8px;
+	background: #4eff28;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4eff28), to(#30ab19));
+	background: -moz-linear-gradient(top, #4eff28, #30ab19);
+	background: linear-gradient(to bottom, #4eff28, #30ab19);
+	font: normal normal bold 20px arial;
+	color: #ffffff;
+	text-decoration: none;
+}
+.add_f_button:hover,
+.add_f_button:focus {
+	border: 1px solid #44f423;
+	background: #5eff30;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5eff30), to(#3acd1e));
+	background: -moz-linear-gradient(top, #5eff30, #3acd1e);
+	background: linear-gradient(to bottom, #5eff30, #3acd1e);
+	color: #ffffff;
+	text-decoration: none;
+}
+.add_f_button:active {
+	background: #30ab19;
+	background: -webkit-gradient(linear, left top, left bottom, from(#30ab19), to(#30ab19));
+	background: -moz-linear-gradient(top, #30ab19, #30ab19);
+	background: linear-gradient(to bottom, #30ab19, #30ab19);
+}
+.add_f_button:before {
+	content: "\0000a0";
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+	line-height: 24px;
+	margin: 0 4px -6px -4px;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABKElEQVRIie3UvUoDURAF4I8gIilSpLCyTCmKIFY+hU8gIinTCr6BWFjkZVL4DkEsUgn+YGNhClHEGLXIrOC6uzeydnrgsNw5O2fuzN29/KMm2ujjFtN49iNeG00M8V7AYei10C0xz9idx6RRoa0ncjfqFrhP5Kb0ZIGFRG5e38Gu3NlUmbwkCuT1I3RwiqdELljFRPEBT7BmNoGl4EVonVinJqCBUUmBUejbeAhOQ3uM9WFmUoY3DEq0Qei1sYyxr7sfRzzbYOWIqjqAO1zmYtcRZ9bFczDrKFu/kj6Ipu/3Tjvi+S/lAC1z/B8NbOIYV4oP+QYn2JKewicWsWd2kWVfRIpTnGE/8kuxEi/OY1rG8/ApRK+mecZe3jibX6uqvR/gt3z+Ej4ATMGAf3nxijUAAAAASUVORK5CYII=")
+		no-repeat left center transparent;
+	background-size: 100% 100%;
 }

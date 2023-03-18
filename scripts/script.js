@@ -1,8 +1,11 @@
 let visible = false;
 $(".change").click(function () {
     if (visible) {
-        $(".options").animate({ opacity: "0" });
-        $(".options").css("display", "none");
+        // https://stackoverflow.com/a/6116775
+        $(".options").animate({ opacity: "0" }, function () {
+            $(".options").css("display", "none");
+        });
+
         visible = false;
     }
     else if (!visible) {
@@ -11,4 +14,3 @@ $(".change").click(function () {
         visible = true;
     }
 });
-

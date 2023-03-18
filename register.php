@@ -17,20 +17,20 @@
     <div class="container_login">
         <main class="main">
             <header class="header">
-                <h1>Panel logowania</h1>
+                <h1>Rejestracja</h1>
             </header>
 
             <section class="login_form">
-                <form action="login.php" method="post">
+                <form action="register.php" method="post">
                     <label for="login_enter">Login</label> <br />
                     <input type="text" id="login_enter" name="login" /> <br />
                     <label for="password_enter">Hasło</label> <br />
                     <input type="password" name="password" id="password_enter" /> <br />
-                    <button class="login_button">Zaloguj się</button>
+                    <button class="register_button">Zajerestruj się</button>
                 </form>
             </section>
-            <p>Nie masz jeszcze konta? Załóż już teraz.</p>
-            <a class="register_button" href="register.php"> Zajerestruj się</a>
+            <p>Masz jeszcze konto? Zaloguj się.</p>
+            <a class="login_button" href="login.php"> Zaloguj się</a>
         </main>
     </div>
 
