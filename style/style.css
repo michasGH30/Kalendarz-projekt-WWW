@@ -1,0 +1,171 @@
+/*
+CSS HEX  
+--bright-green: #5aff15ff;
+--maya-blue: #7ebce6ff;
+--rich-black: #0d1f22ff;
+--shamrock-green: #169873ff;
+--lavender-web: brak użycia;
+
+https://coolors.co/5aff15-7ebce6-0d1f22-169873-e9e6ff
+*/
+
+body {
+	/* https://pl.depositphotos.com/21769333/stock-photo-cork-board.html */
+	background-image: url("../img/board.png");
+	color: white;
+	text-align: center;
+	font-size: 25px;
+	width: 96%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header {
+	background-color: #4657f1;
+	padding: 10px;
+	border-radius: 25px;
+}
+
+.header_link {
+	text-decoration: none;
+	color: black;
+}
+
+.header_link:hover {
+	text-shadow: -1px 10px 5px rgba(140, 0, 248, 0.718);
+}
+
+.container {
+	display: flex;
+}
+.nav {
+	/* http://cliparts.co/notepad-clip-art */
+	/* http://cliparts.co/cliparts/6cr/yRr/6cryRr6Ei.png */
+	background-image: url("../img/note.png");
+	min-width: 350px;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.main {
+	padding: 5px;
+	background-color: rgb(0, 0, 0);
+	min-height: 83vh;
+	border-radius: 25px;
+}
+
+.arrows {
+	display: flex;
+	justify-content: center;
+}
+
+.row {
+	display: flex;
+}
+
+.day {
+	width: 200px;
+	height: 125px;
+	background-color: #bfbfbf;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.options {
+	display: none;
+	opacity: 0;
+}
+
+.option {
+	width: 180px;
+	height: 50px;
+	font-size: 20px;
+	margin: 30px 5px;
+	background-color: #169873ff;
+	color: rgb(0, 0, 0);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+}
+
+.option:hover {
+	/* https://cssgenerator.org/box-shadow-css-generator.html */
+	box-shadow: 3px 1px 4px 2px #5aff15ff;
+	-webkit-box-shadow: 3px 1px 4px 2px #5aff15ff;
+	-moz-box-shadow: 3px 1px 4px 2px #5aff15ff;
+}
+
+.change {
+	cursor: pointer;
+	font-size: 35px;
+	margin-left: 5px;
+	margin-right: 15px;
+	margin-bottom: 20px;
+	margin-top: 15px;
+	color: #ff00ff;
+}
+
+.change:hover {
+	/* https://cssgenerator.org/text-shadow-css-generator.html */
+	text-shadow: -1px 5px 2px rgba(183, 88, 255, 0.718);
+}
+
+.footer {
+	/* https://clipground.com/images/pencil-clipart-1.png */
+	background-image: url("../img/pencil.png");
+	background-repeat: no-repeat;
+	height: 100px;
+	background-position: center center;
+	color: #1b00ff;
+	padding-top: 25px;
+	font-size: 20px;
+}
+
+/* https://devsdash.com/tools/css-button-generator */
+a.ar,
+a.al {
+	background-color: #bbbbbb;
+	padding: 14px 13px;
+	border: 0px solid #000;
+	border-radius: 10px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+}
+a.ar span,
+a.al span {
+	display: block;
+	width: 35px;
+	height: 35px;
+	background-image: url("../img/ar.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+a.al span {
+	background-image: url("../img/al.png");
+}
+a.ar:hover,
+a.al:hover {
+	background-color: #919191;
+}
+a.ar:active,
+a.al:active {
+	transform: scale(0.95);
+}
+
+.day_name {
+	background-color: #4657f1;
+	padding: 2px;
+	font-size: 20px;
+}
+
+.meeting {
+	font-size: 17px;
+	padding: 1px;
+	background-color: green;
+	margin: 3px;
+}
