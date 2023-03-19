@@ -110,17 +110,28 @@
                                 </p>
                             </header>
                         </article>
-                        <div class="meeting_n">
-                            <article>
-                                <header>
-                                    <h3>Tytuł spotkania</h3>
-                                    <p>
-                                        Dzień: 03.05.2023 r. <br />
-                                        Godzina: 12:30
-                                    </p>
-                                </header>
-                            </article>
-                        </div>
+                    </div>
+                    <div class="meeting_n">
+                        <article>
+                            <header>
+                                <h3>Tytuł spotkania</h3>
+                                <p>
+                                    Dzień: 03.05.2023 r. <br />
+                                    Godzina: 12:30
+                                </p>
+                            </header>
+                        </article>
+                    </div>
+                    <div class="meeting_n">
+                        <article>
+                            <header>
+                                <h3>Tytuł spotkania</h3>
+                                <p>
+                                    Dzień: 03.05.2023 r. <br />
+                                    Godzina: 12:30
+                                </p>
+                            </header>
+                        </article>
                     </div>
             </section>
         </main>

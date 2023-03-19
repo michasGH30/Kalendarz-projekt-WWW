@@ -384,13 +384,14 @@ input[type="search"] {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+	flex: 0 0 50%;
 }
 
 .my_friend_p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex: 0 0 50%;
+	/* flex: 0 0 50%; */
 }
 
 .friends_list {
@@ -470,4 +471,20 @@ input[type="search"] {
 
 .meeting_n {
 	flex: 0 0 25%;
+}
+
+.profile_tabs {
+	display: flex;
+	justify-content: space-around;
+}
+
+.profile_fl {
+	width: 70%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.profile_am {
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
 }
