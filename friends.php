@@ -8,6 +8,8 @@
     <title>Kalendarz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/buttons.css" />
+    <link rel="stylesheet" href="style/scrollbar.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 

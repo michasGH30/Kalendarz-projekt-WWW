@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalendarz</title>
     <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/buttons.css" />
+    <link rel="stylesheet" href="style/scrollbar.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
@@ -76,6 +78,51 @@
                                 <p>
                                     19.03.2023 r.
                                 </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="friends_req">
+                        <article>
+                            <header>
+                                <h3>Zaproszenia do znajomych</h3>
+                            </header>
+                            <div class="friends_list">
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+
+                                </div>
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Grzegorz Brzęczyszczykiewicz <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+                                </div>
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+                                </div>
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+                                </div>
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+                                </div>
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+                                </div>
+                                <div class="my_friend">
+                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                    <button class="accept_friend_button">Akceptuj</button>
+                                    <button class="delete_friend_button">Usuń</button>
+                                </div>
                             </div>
                         </article>
                     </div>
