@@ -23,13 +23,13 @@
             </header>
             <section>
                 <header>
-                    <h2>Moi znajomi</h2>
+                    <h2>Edytuj spotkanie</h2>
                 </header>
                 <div class="friends">
-                    <div class="friends_tab">
+                    <div class="meeting_edit_tab">
                         <article>
                             <header>
-                                <h3>Lista znajomych</h3>
+                                <h3>Usuń uczestników</h3>
                             </header>
                             <div class="friends_list">
                                 <div class="my_friend">
@@ -64,10 +64,26 @@
 
                         </article>
                     </div>
-                    <div class="friends_tab">
+
+                    <div class="meeting_edit_tab">
                         <article>
                             <header>
-                                <h3>Inni użytkownicy</h3>
+                                <h3>Szczegóły spotkania</h3>
+                            </header>
+                            <div>
+                                <h4>Data</h4>
+                                <input type="date" name="date" id="date" value="2023-02-27"> <br>
+                                <h4>Tytuł</h4>
+                                <input type="text" name="title" id="title"> <br>
+                                <a href="gdzies.php" class="edit_button">Edytuj</a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="meeting_edit_tab">
+                        <article>
+                            <header>
+                                <h3>Dodaj uczestników</h3>
                             </header>
                             <div class="users">
                                 <div class="my_friend">

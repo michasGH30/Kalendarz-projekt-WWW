@@ -211,7 +211,8 @@ a.al:active {
 
 input[type="text"],
 input[type="password"],
-input[type="search"] {
+input[type="search"],
+input[type="date"] {
 	margin: 10px;
 	font-size: 25px;
 }
@@ -257,10 +258,15 @@ input[type="search"] {
 	padding: 10px;
 }
 
-.friends_tab {
+.friends_tab,
+.meeting_edit_tab {
 	padding: 5px;
 	margin: 5px;
-	width: 50vh;
+	min-width: 76vh;
+}
+
+.meeting_edit_tab {
+	min-width: 50vh;
 }
 
 .meetings_n {
@@ -295,4 +301,8 @@ input[type="search"] {
 	/* text-align: center; */
 	margin-left: 30px;
 	margin-right: 30px;
+}
+
+.meeting_about {
+	min-width: 60vh;
 }
