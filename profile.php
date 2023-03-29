@@ -1,3 +1,9 @@
+<?php
+require("session.php");
+require("db.php");
+if (!isset($_SESSION['logged']))
+    header("location: login.php");
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -30,35 +36,16 @@
                             <header>
                                 <h3>Moi znajomi</h3>
                             </header>
-                            <div class="friends_list">
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Grzegorz Brzęczyszczykiewicz <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
+                            <div class="friends_list" id="profile_my_friends">
+                                <?php
+                                $ID = $_SESSION["ID"];
+                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
+                                }
+                                ?>
                             </div>
                         </article>
                     </div>
@@ -70,13 +57,17 @@
                             <div>
                                 <h4>Podstawowe dane</h4>
                                 <p>
-                                    Login: <br>
-                                    Imię: Michał <br>
-                                    Nazwisko: Żuk <br>
+                                    Login:
+                                    <?= $_SESSION["login"] ?>
+                                    <br>
+                                    Imię: <?= $_SESSION["name"] ?>
+                                    <br>
+                                    Nazwisko: <?= $_SESSION["surname"] ?>
+                                    <br>
                                 </p>
                                 <h4>Data dołączenia</h4>
                                 <p>
-                                    19.03.2023 r.
+                                    <?= $_SESSION["date_of_join"] ?> r.
                                 </p>
                             </div>
                         </article>
@@ -86,43 +77,16 @@
                             <header>
                                 <h3>Zaproszenia do znajomych</h3>
                             </header>
-                            <div class="friends_list">
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Grzegorz Brzęczyszczykiewicz <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="accept_friend_button">Akceptuj</button>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
+                            <div class="friends_list" id="profile_requests">
+                                <?php
+                                $sql = "SELECT users.name, users.surname FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID)";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button'>Akceptuj</button>
+                                    <button class='delete_friend_button'>Usuń</button></div>";
+                                }
+                                ?>
                             </div>
                         </article>
                     </div>

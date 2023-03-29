@@ -1,3 +1,9 @@
+<?php
+require("session.php");
+require("db.php");
+if (!isset($_SESSION['logged']))
+    header("location: login.php");
+?>
 <!DOCTYPE html>
 <html lang="pl">
 

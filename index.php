@@ -1,3 +1,9 @@
+<?php
+require("session.php");
+require("db.php");
+if (!isset($_SESSION['logged']))
+    header("location: login.php");
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -36,7 +42,7 @@
                 <div>
                     <div class="row">
                         <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
+                            <div class="day_name">Dzień tygodnia <br> 10-12-2022</div>
                             <div class="meetings">
                                 <div class="meeting">Spotkanie</div>
                             </div>

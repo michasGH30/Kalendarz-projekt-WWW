@@ -1,4 +1,26 @@
 <?php
+require("session.php");
+require("db.php");
+if (isset($_SESSION['logged']))
+    header("location: index.php");
+else if (isset($_POST["login"])) {
+    $login = $_POST["login"];
+    $password = $_POST["password"];
+    $sql = "SELECT * FROM users WHERE login='$login' AND password='" . md5($password) . "'";
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+        $_SESSION["already_reg"] = true;
+    } else {
+        $name = $_POST["name"];
+        $surname = $_POST["surname"];
+        $date = date('Y-m-d');
+        $password = md5($password);
+        $sql = "INSERT INTO `users` (`ID`, `login`, `password`, `name`, `surname`, `date_of_join`) VALUES (NULL, '$login', '$password', '$name', '$surname', '$date')";
+        $conn->query($sql);
+        $_SESSION["logged"] = true;
+        header("location: index.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +50,21 @@
                     <input type="text" id="login_enter" name="login" /> <br />
                     <label for="password_enter">Hasło</label> <br />
                     <input type="password" name="password" id="password_enter" /> <br />
+                    <label for="name_enter">Imię</label> <br />
+                    <input type="text" name="name" id="name_enter" /> <br />
+                    <label for="surname_enter">Nazwisko</label> <br />
+                    <input type="text" name="surname" id="surname_enter" /> <br />
                     <button class="register_button">Zajerestruj się</button>
                 </form>
             </section>
             <p>Masz jeszcze konto? Zaloguj się.</p>
             <a class="login_button" href="login.php"> Zaloguj się</a>
+            <?php
+            if (isset($_SESSION["already_reg"])) {
+                echo "<p style='color:red'>Podałeś login lub hasło, które już jest w bazie danych. Spróbuj ponownie.</p>";
+                unset($_SESSION["already_reg"]);
+            }
+            ?>
         </main>
     </div>
 

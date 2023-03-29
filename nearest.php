@@ -1,3 +1,9 @@
+<?php
+require("session.php");
+require("db.php");
+if (!isset($_SESSION['logged']))
+    header("location: login.php");
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -25,116 +31,29 @@
                     <h2>Najbliższe spotkania</h2>
                 </header>
                 <div class="meetings_n">
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
-                    <div class="meeting_n">
-                        <article>
-                            <header>
-                                <h3>Tytuł spotkania</h3>
-                                <p>
-                                    Dzień: 03.05.2023 r. <br />
-                                    Godzina: 12:30
-                                </p>
-                            </header>
-                        </article>
-                    </div>
+
+                    <?php
+                    $ID = $_SESSION["ID"];
+                    $sql = "SELECT meetings.title, meetings.date FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) < 0 AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) >= -7";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_object()) {
+                            echo "<div class='meeting_n'>
+                            <article>
+                                <header>
+                                    <h3>" . $row->title . "</h3>
+                                    <p>
+                                        Dzień: " . $row->date . "r.
+                                    </p>
+                                </header>
+                            </article>
+                        </div>";
+                        }
+                    } else {
+                        echo "Nie masz żadnych najbliższych spotkań. Nikt cię nie zaprasza szkoda :(";
+                    }
+
+                    ?>
             </section>
         </main>
         <nav class="nav">

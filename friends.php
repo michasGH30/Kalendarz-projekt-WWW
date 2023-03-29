@@ -1,3 +1,10 @@
+<?php
+require("session.php");
+require("db.php");
+if (!isset($_SESSION['logged']))
+    header("location: login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -31,35 +38,16 @@
                             <header>
                                 <h3>Lista znajomych</h3>
                             </header>
-                            <div class="friends_list">
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Grzegorz Brzęczyszczykiewicz <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="delete_friend_button">Usuń</button>
-                                </div>
+                            <div class="friends_list" id="friends_my_friends">
+                                <?php
+                                $ID = $_SESSION["ID"];
+                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
+                                }
+                                ?>
                             </div>
 
                         </article>
@@ -70,38 +58,14 @@
                                 <h3>Inni użytkownicy</h3>
                             </header>
                             <div class="users">
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                    <button class="add_f_button"> Dodaj</button>
-                                </div>
+                                <?php
+                                $sql = "SELECT users.name, users.surname FROM users WHERE users.ID NOT IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = 1) AND users.ID NOT IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = 1) AND users.ID != 1";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='add_f_button'>Dodaj</button></div>";
+                                }
+                                ?>
                             </div>
 
                         </article>

@@ -1,4 +1,28 @@
 <?php
+require("session.php");
+require("db.php");
+if (isset($_POST["login"]) && !isset($_SESSION["logged"])) {
+    $login = $_POST["login"];
+    $password = $_POST["password"];
+    $password = md5($password);
+    $sql = "SELECT * FROM users WHERE login='$login' AND password='$password'";
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+        $credentials = $result->fetch_object();
+        $_SESSION["ID"] = $credentials->ID;
+        $_SESSION["name"] = $credentials->name;
+        $_SESSION["surname"] = $credentials->surname;
+        $_SESSION["login"] = $login;
+        $date_of_join = strtotime($credentials->date_of_join);
+        $_SESSION["date_of_join"] = date('d.m.Y', $date_of_join);
+        $_SESSION["logged"] = true;
+        header("Location: index.php");
+    } else {
+        $_SESSION["wronglp"] = true;
+    }
+} else if (isset($_SESSION["logged"])) {
+    header("Location: index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +57,12 @@
             </section>
             <p>Nie masz jeszcze konta? Załóż już teraz.</p>
             <a class="register_button" href="register.php"> Zajerestruj się</a>
+            <?php
+            if (isset($_SESSION["wronglp"])) {
+                echo "<p style='color:red;'>Podałeś złe dane do zalogowania. Spróbuj ponownie.</p>";
+                unset($_SESSION["wronglp"]);
+            }
+            ?>
         </main>
     </div>
 
