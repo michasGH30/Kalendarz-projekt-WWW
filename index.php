@@ -24,6 +24,10 @@
                 <div>
                     <a class="al" id="left"><span></span></a>
                 </div>
+
+                <div>
+                    <h2>Miesiąc</h2>
+                </div>
                 <div>
                     <a class="ar" id="rigth"><span></span></a>
                 </div>

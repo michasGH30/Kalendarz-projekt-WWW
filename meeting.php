@@ -22,7 +22,7 @@
             </header>
             <section>
                 <header>
-                    <h2>Mój profil</h2>
+                    <h2>Szczegóły spotkania</h2>
                 </header>
                 <div class="profile_tabs">
                     <div class="meeting_about">

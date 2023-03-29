@@ -69,6 +69,7 @@ body {
 .arrows {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 .row {
@@ -156,6 +157,7 @@ body {
 /* https://devsdash.com/tools/css-button-generator */
 a.ar,
 a.al {
+	cursor: pointer;
 	background-color: #bbbbbb;
 	padding: 14px 13px;
 	border: 0px solid #000;
@@ -279,12 +281,23 @@ input[type="date"] {
 
 .meeting_n {
 	flex: 0 0 25%;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .profile_tabs {
 	min-width: 77vw;
 	display: flex;
 	justify-content: space-around;
+}
+
+.profile_tabs *,
+.friends *,
+.meetings_n * {
+	background-color: #f1f1f1;
+	border-radius: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .profile_fl {
