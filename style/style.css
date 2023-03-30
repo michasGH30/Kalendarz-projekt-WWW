@@ -76,12 +76,20 @@ body {
 	display: flex;
 }
 
-.day {
+.day,
+.before {
 	width: 200px;
 	height: 125px;
 	background-color: #bfbfbf;
 	border-radius: 5px;
 	margin: 5px;
+}
+
+.before,
+.before .day_name,
+.before .day_name .meetings {
+	background-color: #0000;
+	color: #0000;
 }
 
 .options {
@@ -191,6 +199,8 @@ a.al:active {
 
 .day_name,
 .day_name_weekend {
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
 	background-color: #4657f1;
 	padding: 2px;
 	font-size: 20px;
@@ -200,11 +210,16 @@ a.al:active {
 	background-color: red;
 }
 
-.meeting {
+.meeting,
+.meeting_b {
 	font-size: 17px;
 	padding: 1px;
 	background-color: green;
 	margin: 3px;
+}
+
+.meeting_b {
+	background-color: #0000;
 }
 
 .login_form {

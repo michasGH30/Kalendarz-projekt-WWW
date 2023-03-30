@@ -32,7 +32,19 @@ if (!isset($_SESSION['logged']))
                 </div>
 
                 <div>
-                    <h2>Miesiąc</h2>
+                    <?php
+                    $sql = 'SET @@lc_time_names = "pl_PL"';
+                    $conn->query($sql);
+                    $sql = "SELECT LAST_DAY(meetings.date) as last_date, DAYNAME(DATE_FORMAT(meetings.date,'%Y-%m-01')) as day_name_first, MONTHNAME(CURRENT_TIMESTAMP) as month_name FROM meetings LIMIT 1";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_object()) {
+                        $day_name_first = $row->day_name_first;
+                        // ucfirst Zamiana Pierwszej Litery Na Dużą
+                        // https://stackoverflow.com/a/29166736
+                        $month_name = ucfirst($row->month_name);
+                        echo "<h2>" . $month_name . "</h2>";
+                    }
+                    ?>
                 </div>
                 <div>
                     <a class="ar" id="rigth"><span></span></a>
@@ -41,10 +53,10 @@ if (!isset($_SESSION['logged']))
             <section>
                 <div>
                     <div class="row">
-                        <div class="day">
+                        <div class="before">
                             <div class="day_name">Dzień tygodnia <br> 10-12-2022</div>
                             <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
+                                <div class="meeting_b">Spotkanie</div>
                             </div>
                         </div>
                         <div class="day">
