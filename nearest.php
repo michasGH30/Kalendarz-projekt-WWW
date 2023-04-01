@@ -34,10 +34,11 @@ if (!isset($_SESSION['logged']))
 
                     <?php
                     $ID = $_SESSION["ID"];
-                    $sql = "SELECT meetings.title, meetings.date FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) < 0 AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) >= -7";
+                    $sql = "SELECT meetings.title, meetings.date FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) <= 0 AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) >= -7";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_object()) {
+
                             echo "<div class='meeting_n'>
                             <article>
                                 <header>

@@ -51,7 +51,7 @@ if (!isset($_SESSION['logged']))
                 </div>
             </div>
             <section>
-                <div>
+                <div id="days">
                     <div class="row">
                         <div class="before">
                             <div class="day_name">Dzień tygodnia <br> 10-12-2022</div>

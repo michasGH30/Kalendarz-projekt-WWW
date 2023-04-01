@@ -3,6 +3,9 @@ require("session.php");
 require("db.php");
 if (!isset($_SESSION['logged']))
     header("location: login.php");
+// if (!isset($_GET["mID"])) {
+//     header("location: index.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="pl">

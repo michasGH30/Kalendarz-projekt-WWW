@@ -4,8 +4,11 @@ SELECT users.name, users.surname FROM users WHERE users.ID IN (SELECT friends.ID
 -- wybranie imion i nazwisko znajomych, którzy wysłali zaproszenie dla usera o ID = 2
 SELECT users.name, users.surname FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = 2)
 
--- wybranie tytułu i daty spotkania oraz imiona i nazwiska osób zaproszonych do spotkania #użyte w informacjach o spotkaniu
-SELECT meetings.title, meetings.date, users.name, users.surname FROM meetings, users, meetings_members WHERE meetings.ID = 1 AND users.ID = meetings_members.ID_user;
+-- wybranie tytułu i daty spotkania #użyte w informacjach o spotkaniu
+SELECT meetings.title, meetings.date FROM meetings WHERE meetings.ID = 1;
+
+-- wybranie ID, imion i nazwisk osób, które uczestniczą w spotkaniu o ID=8
+SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = 8);
 
 -- wybranie spotkań dla usera od ID = 2 #użyte na stronie głównej
 SELECT meetings.title, meetings.date FROM meetings, meetings_members WHERE meetings_members.ID_user = 2 AND meetings_members.ID_meeting = meetings.ID;

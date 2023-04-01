@@ -3,6 +3,9 @@ require("session.php");
 require("db.php");
 if (!isset($_SESSION['logged']))
     header("location: login.php");
+// if (!isset($_GET["mID"])) {
+//     header("location: index.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -36,17 +39,19 @@ if (!isset($_SESSION['logged']))
                             <header>
                                 <h3>Spotkanie</h3>
                             </header>
-                            <div>
-                                <h4>Tytuł spotkania</h4>
-                                <p>
-                                    Tytuł
-                                </p>
-                                <h4>Data spotkania</h4>
-                                <p>
-                                    19.03.2023 r.
-                                </p>
-                            </div>
-                            <a href="gdzies.php" class="edit_button">Edytuj</a>
+                            <?php
+                            // $mID = $_GET["mID"];
+                            $mID = 8;
+                            $sql = "SELECT meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
+                            $result = $conn->query($sql);
+                            while ($row = $result->fetch_object()) {
+                                $date = strtotime($row->date);
+                                $date_f = date('d.m.Y', $date);
+                                echo "<div>
+                                        <h4>Tytuł spotkiania</h4><p>" . $row->title . "</p>
+                                        <h4>Data spotkania</h4><p>" . $date_f . "</p></div><a href='meeting_edit.php?mID=$mID' class='edit_button'>Edytuj</a>";
+                            }
+                            ?>
                         </article>
                     </div>
                     <div class="friends_req">
@@ -54,34 +59,19 @@ if (!isset($_SESSION['logged']))
                             <header>
                                 <h3>Uczestnicy</h3>
                             </header>
-                            <div class="friends_list">
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                            <div class="friends_list" id="meeting_users">
 
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Grzegorz Brzęczyszczykiewicz <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                <?php
+                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID);";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
 
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
+                                </div>";
+                                }
+                                ?>
 
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-
-                                </div>
-                                <div class="my_friend">
-                                    <p class="my_friend_p">Adam Kowalski <img src="img/profile.png" alt="zdjęcie profilowe" class="friend_profile" /></p>
-
-                                </div>
                             </div>
                         </article>
                     </div>

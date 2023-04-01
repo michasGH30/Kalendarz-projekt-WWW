@@ -81,11 +81,15 @@ if (!isset($_SESSION['logged']))
                                 <?php
                                 $sql = "SELECT users.name, users.surname FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID)";
                                 $result = $conn->query($sql);
+
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
+                                    for ($i = 0; $i < 5; $i++) {
+                                        echo "<div class='my_friend'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button'>Akceptuj</button>
                                     <button class='delete_friend_button'>Usuń</button></div>";
+                                    }
                                 }
+
                                 ?>
                             </div>
                         </article>
