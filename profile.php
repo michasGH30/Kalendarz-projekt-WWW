@@ -54,7 +54,7 @@ if (!isset($_SESSION['logged']))
                             <header>
                                 <h3>O mnie</h3>
                             </header>
-                            <div>
+                            <div id="pam">
                                 <h4>Podstawowe dane</h4>
                                 <p>
                                     Login:

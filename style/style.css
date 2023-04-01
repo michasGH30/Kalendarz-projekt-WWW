@@ -14,7 +14,7 @@ body {
 	background-image: url("../img/board.png");
 	color: white;
 	text-align: center;
-	font-size: 25px;
+	font-size: 20px;
 	width: 96%;
 	margin-left: auto;
 	margin-right: auto;
@@ -22,7 +22,7 @@ body {
 
 .header {
 	background-color: #4657f1;
-	padding: 10px;
+	padding: 1px;
 	border-radius: 25px;
 }
 
@@ -62,7 +62,6 @@ body {
 .main {
 	padding: 5px;
 	background-color: rgb(0, 0, 0);
-	min-height: 83vh;
 	border-radius: 25px;
 }
 
@@ -78,11 +77,11 @@ body {
 
 .day,
 .before {
-	width: 200px;
-	height: 125px;
+	width: 9.5vw;
+	height: 91px;
 	background-color: #bfbfbf;
 	border-radius: 5px;
-	margin: 5px;
+	margin: 3px;
 }
 
 .before,
@@ -167,7 +166,7 @@ a.ar,
 a.al {
 	cursor: pointer;
 	background-color: #bbbbbb;
-	padding: 14px 13px;
+	padding: 10px 10px;
 	border: 0px solid #000;
 	border-radius: 10px;
 	display: inline-flex;
@@ -216,6 +215,7 @@ a.al:active {
 	padding: 1px;
 	background-color: green;
 	margin: 3px;
+	border-radius: 5px;
 }
 
 .meeting_b {
@@ -271,7 +271,7 @@ input[type="date"] {
 
 .friends_list,
 .users {
-	max-height: 40vh;
+	max-height: 37vh;
 	padding: 10px;
 }
 
@@ -279,19 +279,19 @@ input[type="date"] {
 .meeting_edit_tab {
 	padding: 5px;
 	margin: 5px;
-	min-width: 76vh;
+	min-width: 33.5vw;
 }
 
 .meeting_edit_tab {
-	min-width: 50vh;
+	min-width: 50vw;
 }
 
 .meetings_n {
 	display: flex;
 	justify-content: space-evenly;
-	width: 155vh;
+	width: 71vw;
 	flex-wrap: wrap;
-	max-height: 40vh;
+	height: 52vh;
 }
 
 .meeting_n {
@@ -301,7 +301,7 @@ input[type="date"] {
 }
 
 .profile_tabs {
-	min-width: 77vw;
+	min-width: 50vw;
 	display: flex;
 	justify-content: space-around;
 }

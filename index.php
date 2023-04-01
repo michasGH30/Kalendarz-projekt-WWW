@@ -251,6 +251,7 @@ if (!isset($_SESSION['logged']))
         </p>
     </footer>
     <script src="scripts/script.js"></script>
+    <script src="scripts/scroll.js"></script>
 </body>
 
 </html>
