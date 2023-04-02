@@ -289,12 +289,13 @@ input[type="date"] {
 .meeting_edit_tab {
 	padding: 5px;
 	margin: 5px;
-	min-width: 33.5vw;
+	max-height: 50vh;
+	/* min-width: 33.5vw; */
 }
 
-.meeting_edit_tab {
+/* .meeting_edit_tab {
 	min-width: 50vw;
-}
+} */
 
 .meetings_n {
 	display: flex;
