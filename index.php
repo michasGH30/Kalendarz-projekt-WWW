@@ -35,15 +35,14 @@ if (!isset($_SESSION['logged']))
                     <?php
                     $sql = 'SET @@lc_time_names = "pl_PL"';
                     $conn->query($sql);
-                    $sql = "SELECT LAST_DAY(meetings.date) as last_date, DAYNAME(DATE_FORMAT(meetings.date,'%Y-%m-01')) as day_name_first, MONTHNAME(CURRENT_TIMESTAMP) as month_name FROM meetings LIMIT 1";
+                    $sql = "SELECT MONTHNAME(CURRENT_TIMESTAMP) as month_name FROM meetings ";
                     $result = $conn->query($sql);
-                    while ($row = $result->fetch_object()) {
-                        $day_name_first = $row->day_name_first;
-                        // ucfirst Zamiana Pierwszej Litery Na Dużą
-                        // https://stackoverflow.com/a/29166736
-                        $month_name = ucfirst($row->month_name);
-                        echo "<h2>" . $month_name . "</h2>";
-                    }
+                    $row = $result->fetch_object();
+
+                    // ucfirst Zamiana Pierwszej Litery Na Dużą
+                    // https://stackoverflow.com/a/29166736
+                    $month_name = ucfirst($row->month_name);
+                    echo "<h2>" . $month_name . "</h2>";
                     ?>
                 </div>
                 <div>
@@ -52,7 +51,24 @@ if (!isset($_SESSION['logged']))
             </div>
             <section>
                 <div id="days">
-                    <div class="row">
+                    <?php
+                    $ID = $_SESSION["ID"];
+                    $currentDate = getdate();
+                    $mm = $currentDate["mon"];
+                    $day_count = cal_days_in_month(CAL_GREGORIAN, $currentDate["mon"], $currentDate["year"]);
+                    for ($i = 1; $i <= $day_count; $i++) {
+                        // SET @@lc_time_names = 'pl_PL'
+                        // SELECT meetings.title, meetings.date, TIMESTAMPDIFF(week,CURRENT_TIMESTAMP,meetings.date) AS `WOFBYTODAY`, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE MONTH(CURRENT_TIMESTAMP) = MONTH(meetings.date) AND meetings_members.ID_user = 2 AND meetings_members.ID_meeting = meetings.ID ORDER BY WOFBYTODAY, meetings.date
+                        $sql = "SELECT meetings.ID, meetings.title, meetings.date, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND DAY(meetings.date) = $i AND = MONTH(meetings.date) = $mm";
+
+                        $result = $conn->query($sql);
+                        $row = $result->fetch_object();
+                        if ($row != NULL) {
+                            echo $row->ID . " " . $row->title . " " . $row->date . "<br>";
+                        }
+                    }
+                    ?>
+                    <!-- <div class="row"> 
                         <div class="before">
                             <div class="day_name">Dzień tygodnia <br> 10-12-2022</div>
                             <div class="meetings">
@@ -227,7 +243,7 @@ if (!isset($_SESSION['logged']))
                                 <div class="meeting">Spotkanie</div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </section>
         </main>
