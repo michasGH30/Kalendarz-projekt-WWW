@@ -50,21 +50,26 @@ if (!isset($_SESSION['logged']))
                 </div>
             </div>
             <section>
-                <div id="days">
+                <div id="days" style="display: flex;">
                     <?php
                     $ID = $_SESSION["ID"];
                     $currentDate = getdate();
                     $mm = $currentDate["mon"];
                     $day_count = cal_days_in_month(CAL_GREGORIAN, $currentDate["mon"], $currentDate["year"]);
+
                     for ($i = 1; $i <= $day_count; $i++) {
-                        // SET @@lc_time_names = 'pl_PL'
-                        // SELECT meetings.title, meetings.date, TIMESTAMPDIFF(week,CURRENT_TIMESTAMP,meetings.date) AS `WOFBYTODAY`, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE MONTH(CURRENT_TIMESTAMP) = MONTH(meetings.date) AND meetings_members.ID_user = 2 AND meetings_members.ID_meeting = meetings.ID ORDER BY WOFBYTODAY, meetings.date
-                        $sql = "SELECT meetings.ID, meetings.title, meetings.date, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND DAY(meetings.date) = $i AND = MONTH(meetings.date) = $mm";
+                        $sql = "SELECT meetings.ID, meetings.title, meetings.date, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND DAY(meetings.date) = $i AND MONTH(meetings.date) = $mm ORDER BY meetings.ID";
 
                         $result = $conn->query($sql);
-                        $row = $result->fetch_object();
-                        if ($row != NULL) {
-                            echo $row->ID . " " . $row->title . " " . $row->date . "<br>";
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_object();
+                            echo "<div class='day'><div class='day_name'>" . $row->day_name . "<br>" . $row->date . "</div><div class='meetings'>";
+                            echo "<div class='meeting'>" . $row->title . "</div>";
+                            for ($j = 1; $j < $result->num_rows; $j++) {
+                                $row = $result->fetch_object();
+                                echo "<div class='meeting'>" . $row->title . "</div>";
+                            }
+                            echo "</div></div>";
                         }
                     }
                     ?>

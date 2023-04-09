@@ -75,6 +75,11 @@ body {
 	display: flex;
 }
 
+#days {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .day,
 .before {
 	width: 9.5vw;
@@ -82,6 +87,7 @@ body {
 	background-color: #bfbfbf;
 	border-radius: 5px;
 	margin: 5px;
+	flex: 1 1 auto;
 }
 
 #days {
