@@ -52,6 +52,7 @@ if (!isset($_SESSION['logged']))
             <section>
                 <div id="days" style="display: flex;">
                     <?php
+                    $day_names = [1 => "poniedziałek", 2 => "wtorek", 3 => "środa", 4 => "czwartek", 5 => "piątek", 6 => "sobota", 0 => "niedziela"];
                     $ID = $_SESSION["ID"];
                     $currentDate = getdate();
                     $mm = $currentDate["mon"];
@@ -63,199 +64,39 @@ if (!isset($_SESSION['logged']))
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_object();
-                            echo "<div class='day'><div class='day_name'>" . $row->day_name . "<br>" . $row->date . "</div><div class='meetings'>";
+                            echo "<div class='day'>";
+                            if ($row->day_name == "sobota" || $row->day_name == "niedziela") {
+                                echo "<div class='day_name_weekend'>";
+                            } else {
+                                echo "<div class='day_name'>";
+                            }
+                            echo $row->day_name . "<br>" . $row->date . "</div>";
+                            echo "<div class='meetings'>";
                             echo "<div class='meeting'>" . $row->title . "</div>";
                             for ($j = 1; $j < $result->num_rows; $j++) {
                                 $row = $result->fetch_object();
                                 echo "<div class='meeting'>" . $row->title . "</div>";
                             }
                             echo "</div></div>";
+                        } else {
+                            $d = date_create($currentDate["year"] . "-" . $currentDate["mon"] . "-" . $i);
+                            echo "<div class='day'>";
+                            if (date_format($d, "w") == 6 || date_format($d, "w") == 0) {
+                                echo "<div class='day_name_weekend'>";
+                            } else {
+                                echo "<div class='day_name'>";
+                            }
+                            echo $day_names[date_format($d, "w")] . "<br>" . date_format($d, "Y-m-d") . "</div></div>";
                         }
                     }
                     ?>
-                    <!-- <div class="row"> 
-                        <div class="before">
-                            <div class="day_name">Dzień tygodnia <br> 10-12-2022</div>
-                            <div class="meetings">
-                                <div class="meeting_b">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                        <div class="day">
-                            <div class="day_name_weekend">Dzień tygodnia</div>
-                            <div class="meetings">
-                                <div class="meeting">Spotkanie</div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </section>
         </main>
         <nav class="nav">
             <!-- grafika z https://makersacademy.co.za/tpl-2_31_29-.html -->
             <div class="change">
-                <a class="profile"><img src="img/profile.png" alt="zdjęcie profilowe" class="profile_img" /></a>
+                <a class="profile"><img src="<?= $_SESSION["img_path"] ?>" alt="zdjęcie profilowe" class="profile_img" /></a>
             </div>
             <div class="options">
                 <a href="profile.php" class="option">Mój profil</a>

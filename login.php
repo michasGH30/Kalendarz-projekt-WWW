@@ -15,6 +15,7 @@ if (isset($_POST["login"]) && !isset($_SESSION["logged"])) {
         $_SESSION["login"] = $login;
         $date_of_join = strtotime($credentials->date_of_join);
         $_SESSION["date_of_join"] = date('d.m.Y', $date_of_join);
+        $_SESSION["img_path"] = $credentials->picture;
         $_SESSION["logged"] = true;
         header("Location: index.php");
     } else {
