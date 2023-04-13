@@ -44,7 +44,7 @@ if (!isset($_SESSION['logged']))
                                 <header>
                                     <h3>" . $row->title . "</h3>
                                     <p>
-                                        Dzień: " . $row->date . "r.
+                                        Dzień: " . $row->date . "
                                     </p>
                                 </header>
                             </article>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['logged']))
         <nav class="nav">
             <!-- grafika z https://makersacademy.co.za/tpl-2_31_29-.html -->
             <div class="change">
-                <a class="profile"><img src="img/profile.png" alt="zdjęcie profilowe" class="profile_img" /></a>
+                <a class="profile"><img src="<?= $_SESSION["img_path"] ?>" alt="zdjęcie profilowe" class="profile_img" /></a>
             </div>
             <div class="options">
                 <a href="profile.php" class="option">Mój profil</a>

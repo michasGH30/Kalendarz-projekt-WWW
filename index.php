@@ -77,7 +77,7 @@ if (!isset($_SESSION['logged']))
                                 $row = $result->fetch_object();
                                 echo "<div class='meeting'>" . $row->title . "</div>";
                             }
-                            echo "</div></div>";
+                            echo "</div>";
                         } else {
                             $d = date_create($currentDate["year"] . "-" . $currentDate["mon"] . "-" . $i);
                             echo "<div class='day'>";
@@ -86,8 +86,9 @@ if (!isset($_SESSION['logged']))
                             } else {
                                 echo "<div class='day_name'>";
                             }
-                            echo $day_names[date_format($d, "w")] . "<br>" . date_format($d, "Y-m-d") . "</div></div>";
+                            echo $day_names[date_format($d, "w")] . "<br>" . date_format($d, "Y-m-d") . "</div>";
                         }
+                        echo "<button class='add_meeting_button'>Dodaj spotkanie</button></div>";
                     }
                     ?>
                 </div>

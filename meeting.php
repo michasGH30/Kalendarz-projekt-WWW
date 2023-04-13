@@ -42,7 +42,7 @@ if (!isset($_SESSION['logged']))
                             <?php
                             // $mID = $_GET["mID"];
                             $mID = 8;
-                            $sql = "SELECT meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
+                            $sql = "SELECT meeting.ID, meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
                             $result = $conn->query($sql);
                             while ($row = $result->fetch_object()) {
                                 $date = strtotime($row->date);
@@ -67,7 +67,6 @@ if (!isset($_SESSION['logged']))
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
-
                                 </div>";
                                 }
                                 ?>
@@ -81,7 +80,7 @@ if (!isset($_SESSION['logged']))
         <nav class="nav">
             <!-- grafika z https://makersacademy.co.za/tpl-2_31_29-.html -->
             <div class="change">
-                <a class="profile"><img src="img/profile.png" alt="zdjęcie profilowe" class="profile_img" /></a>
+                <a class="profile"><img src="<?= $_SESSION["img_path"] ?>" alt="zdjęcie profilowe" class="profile_img" /></a>
             </div>
             <div class="options">
                 <a href="profile.php" class="option">Mój profil</a>

@@ -39,11 +39,12 @@ if (!isset($_SESSION['logged']))
                             <div class="friends_list" id="profile_my_friends">
                                 <?php
                                 $ID = $_SESSION["ID"];
-                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
+                                    echo " alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
                                 }
                                 ?>
                             </div>
@@ -79,15 +80,15 @@ if (!isset($_SESSION['logged']))
                             </header>
                             <div class="friends_list" id="profile_requests">
                                 <?php
-                                $sql = "SELECT users.name, users.surname FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID)";
+                                $sql = "SELECT users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID)";
                                 $result = $conn->query($sql);
 
                                 while ($row = $result->fetch_object()) {
-                                    for ($i = 0; $i < 5; $i++) {
-                                        echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button'>Akceptuj</button>
+
+                                    echo "<div class='my_friend'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button'>Akceptuj</button>
                                     <button class='delete_friend_button'>Usuń</button></div>";
-                                    }
                                 }
 
                                 ?>
@@ -100,7 +101,7 @@ if (!isset($_SESSION['logged']))
         <nav class="nav">
             <!-- grafika z https://makersacademy.co.za/tpl-2_31_29-.html -->
             <div class="change">
-                <a class="profile"><img src="img/profile.png" alt="zdjęcie profilowe" class="profile_img" /></a>
+                <a class="profile"><img src="<?= $_SESSION["img_path"] ?>" alt="zdjęcie profilowe" class="profile_img" /></a>
             </div>
             <div class="options">
                 <a href="profile.php" class="option">Mój profil</a>

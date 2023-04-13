@@ -39,7 +39,7 @@ $(document).ready(function () {
     // }
     vh = m / w;
     // alert(vh);
-    if (vh >= 0.1) {
+    if (vh >= 0.35) {
         $(".meetings_n").css("overflow-y", "scroll");
     }
     // vh = pam / w;

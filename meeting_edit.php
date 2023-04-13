@@ -45,11 +45,12 @@ if (!isset($_SESSION['logged']))
                                 // $mID = $_GET["mID"];
                                 $mID = 8;
                                 $ID = $_SESSION["ID"];
-                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID) AND users.ID !=$ID";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID) AND users.ID !=$ID";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
                                     <button class='delete_friend_button'>Usuń</button>
                                 </div>";
                                 }
@@ -111,7 +112,7 @@ if (!isset($_SESSION['logged']))
         <nav class="nav">
             <!-- grafika z https://makersacademy.co.za/tpl-2_31_29-.html -->
             <div class="change">
-                <a class="profile"><img src="img/profile.png" alt="zdjęcie profilowe" class="profile_img" /></a>
+                <a class="profile"><img src="<?= $_SESSION["img_path"] ?>" alt="zdjęcie profilowe" class="profile_img" /></a>
             </div>
             <div class="options">
                 <a href="profile.php" class="option">Mój profil</a>

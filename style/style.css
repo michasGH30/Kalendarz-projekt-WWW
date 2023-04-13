@@ -84,7 +84,7 @@ body {
 .day,
 .before {
 	width: 9.5vw;
-	height: 150px;
+	height: 250px;
 	background-color: #bfbfbf;
 	border-radius: 5px;
 	margin: 5px;
@@ -263,6 +263,8 @@ input[type="date"] {
 
 .friends {
 	display: flex;
+	width: 72vw;
+	justify-content: space-around;
 }
 
 .friend_profile {
@@ -298,7 +300,10 @@ input[type="date"] {
 	padding: 5px;
 	margin: 5px;
 	max-height: 50vh;
-	/* min-width: 33.5vw; */
+}
+
+.friends_tab {
+	min-width: 33.5vw;
 }
 
 /* .meeting_edit_tab {
@@ -310,7 +315,7 @@ input[type="date"] {
 	justify-content: space-evenly;
 	width: 71.5vw;
 	flex-wrap: wrap;
-	height: 52vh;
+	max-height: 52vh;
 }
 
 .meeting_n {
@@ -343,7 +348,6 @@ input[type="date"] {
 }
 
 .friedns_req {
-	/* text-align: center; */
 	margin-left: 30px;
 	margin-right: 30px;
 }

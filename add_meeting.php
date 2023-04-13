@@ -3,8 +3,10 @@ require("session.php");
 require("db.php");
 if (!isset($_SESSION['logged']))
     header("location: login.php");
+// if (!isset($_GET["mID"])) {
+//     header("location: index.php");
+// }
 ?>
-
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -30,42 +32,68 @@ if (!isset($_SESSION['logged']))
             </header>
             <section>
                 <header>
-                    <h2>Moi znajomi</h2>
+                    <h2>Edytuj spotkanie</h2>
                 </header>
                 <div class="friends">
-                    <div class="friends_tab">
+                    <!-- <div class="meeting_edit_tab" id="meeting_e_tab">
                         <article>
                             <header>
-                                <h3>Lista znajomych</h3>
+                                <h3>Usuń uczestników</h3>
                             </header>
-                            <div class="friends_list" id="friends_my_friends">
+                            <div class="friends_list">
                                 <?php
+                                // $mID = $_GET["mID"];
+                                $mID = 8;
                                 $ID = $_SESSION["ID"];
-                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID) AND users.ID !=$ID";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
-                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    <button class='delete_friend_button'>Usuń</button>
+                                </div>";
                                 }
+
                                 ?>
                             </div>
 
                         </article>
-                    </div>
-                    <div class="friends_tab">
+                    </div> -->
+
+                    <div class="meeting_edit_tab">
                         <article>
                             <header>
-                                <h3>Inni użytkownicy</h3>
+                                <h3>Szczegóły spotkania</h3>
+                            </header>
+                            <div>
+                                <form action='add_meeting_query.php' method='post'>
+                                    <h4>Tytuł spotkiania</h4>
+                                    <input type='text' name='title' id='title'>
+                                    <h4>Data spotkania</h4>
+                                    <input type='date' name='date' id='date'>
+                            </div>
+                            <button class='add_meeting_button'>Dodaj spotkanie</button>
+                        </article>
+                    </div>
+
+                    <div class="meeting_edit_tab" id="meeting_add_mem">
+                        <article>
+                            <header>
+                                <h3>Dodaj uczestników</h3>
                             </header>
                             <div class="users">
                                 <?php
-                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID NOT IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID) AND users.ID NOT IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID) AND users.ID != $ID";
+                                // $mID = $_GET["mID"];
+                                $mID = 8;
+                                $ID = $_SESSION["ID"];
+                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID NOT IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID) AND users.ID !=$ID";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
-                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='add_f_button'>Dodaj</button></div>";
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    <button class='add_f_button'>Dodaj</button>
+                                </div>";
                                 }
                                 ?>
                             </div>
