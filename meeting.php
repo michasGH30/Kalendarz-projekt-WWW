@@ -42,7 +42,7 @@ if (!isset($_SESSION['logged']))
                             <?php
                             // $mID = $_GET["mID"];
                             $mID = 8;
-                            $sql = "SELECT meeting.ID, meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
+                            $sql = "SELECT meetings.ID, meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
                             $result = $conn->query($sql);
                             while ($row = $result->fetch_object()) {
                                 $date = strtotime($row->date);
@@ -62,11 +62,12 @@ if (!isset($_SESSION['logged']))
                             <div class="friends_list" id="meeting_users">
 
                                 <?php
-                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID);";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID) ORDER BY users.ID";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
                                 </div>";
                                 }
                                 ?>
@@ -93,7 +94,7 @@ if (!isset($_SESSION['logged']))
 
     <footer class="footer">
         <p>
-            Strona wykonana przez <a href="https://github.com/michasGH30?tab=repositories" target="_blank">Michał Żuk</a> &copy; 2023.
+            Strona wykonana przez <a href="https://github.com/michasGH30?tab=repositories" target="_blank">Michał Żuk</a> &copy; <?= date("Y") ?>.
         </p>
     </footer>
     <script src="scripts/script.js"></script>

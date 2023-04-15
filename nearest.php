@@ -73,7 +73,7 @@ if (!isset($_SESSION['logged']))
 
     <footer class="footer">
         <p>
-            Strona wykonana przez <a href="https://github.com/michasGH30?tab=repositories" target="_blank">Michał Żuk</a> &copy; 2023.
+            Strona wykonana przez <a href="https://github.com/michasGH30?tab=repositories" target="_blank">Michał Żuk</a> &copy; <?= date("Y") ?>.
         </p>
     </footer>
     <script src="scripts/script.js"></script>

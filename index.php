@@ -60,10 +60,16 @@ if (!isset($_SESSION['logged']))
 
                     for ($i = 1; $i <= $day_count; $i++) {
                         $sql = "SELECT meetings.ID, meetings.title, meetings.date, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND DAY(meetings.date) = $i AND MONTH(meetings.date) = $mm ORDER BY meetings.ID";
+                        $day_to_add;
+                        $month_to_add;
+                        $year_to_add;
 
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_object();
+                            $day_to_add = explode("-", $row->date)[2];
+                            $month_to_add = explode("-", $row->date)[1];
+                            $year_to_add = explode("-", $row->date)[0];
                             echo "<div class='day'>";
                             if ($row->day_name == "sobota" || $row->day_name == "niedziela") {
                                 echo "<div class='day_name_weekend'>";
@@ -87,8 +93,11 @@ if (!isset($_SESSION['logged']))
                                 echo "<div class='day_name'>";
                             }
                             echo $day_names[date_format($d, "w")] . "<br>" . date_format($d, "Y-m-d") . "</div>";
+                            $day_to_add = date_format($d, 'd');
+                            $month_to_add = date_format($d, 'm');
+                            $year_to_add = date_format($d, 'Y');
                         }
-                        echo "<button class='add_meeting_button'>Dodaj spotkanie</button></div>";
+                        echo "<form action='add_meeting.php' method='post'><button class='add_meeting_button'>Dodaj spotkanie</button><input type='hidden' value='$day_to_add' name='day'><input type='hidden' value='$month_to_add' name='month'><input type='hidden' value='$year_to_add' name='year'></form></div>";
                     }
                     ?>
                 </div>
@@ -110,7 +119,7 @@ if (!isset($_SESSION['logged']))
 
     <footer class="footer">
         <p>
-            Strona wykonana przez <a href="https://github.com/michasGH30?tab=repositories" target="_blank">Michał Żuk</a> &copy; 2023.
+            Strona wykonana przez <a href="https://github.com/michasGH30?tab=repositories" target="_blank">Michał Żuk</a> &copy; <?= date("Y") ?>.
         </p>
     </footer>
     <script src="scripts/script.js"></script>
