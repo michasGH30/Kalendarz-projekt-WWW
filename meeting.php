@@ -3,9 +3,9 @@ require("session.php");
 require("db.php");
 if (!isset($_SESSION['logged']))
     header("location: login.php");
-// if (!isset($_GET["mID"])) {
-//     header("location: index.php");
-// }
+if (!isset($_GET["mID"])) {
+    header("location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -40,8 +40,8 @@ if (!isset($_SESSION['logged']))
                                 <h3>Spotkanie</h3>
                             </header>
                             <?php
-                            // $mID = $_GET["mID"];
-                            $mID = 8;
+                            $mID = $_GET["mID"];
+                            // $mID = 8;
                             $sql = "SELECT meetings.ID, meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
                             $result = $conn->query($sql);
                             while ($row = $result->fetch_object()) {

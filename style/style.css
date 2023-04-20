@@ -230,6 +230,16 @@ a.al:active {
 	border-radius: 5px;
 }
 
+.meeting_details {
+	text-decoration: none;
+	display: block;
+	color: white;
+}
+
+.meeting_details div:hover {
+	background-color: lime;
+}
+
 .meeting_b {
 	background-color: #0000;
 }

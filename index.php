@@ -78,10 +78,10 @@ if (!isset($_SESSION['logged']))
                             }
                             echo $row->day_name . "<br>" . $row->date . "</div>";
                             echo "<div class='meetings'>";
-                            echo "<div class='meeting'>" . $row->title . "</div>";
+                            echo "<a class='meeting_details' href='meeting.php?mID=$row->ID'><div class='meeting'>" . $row->title . "</div></a>";
                             for ($j = 1; $j < $result->num_rows; $j++) {
                                 $row = $result->fetch_object();
-                                echo "<div class='meeting'>" . $row->title . "</div>";
+                                echo "<a class='meeting_details' href='meeting.php?mID=$row->ID'><div class='meeting'>" . $row->title . "</div></a>";
                             }
                             echo "</div>";
                         } else {
