@@ -42,9 +42,9 @@ if (!isset($_SESSION['logged']))
                                 $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
+                                    echo "<div class='my_friend' id='" . $row->ID . "my_friends'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
-                                    echo " alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
+                                    echo " alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button' data-user='" . $row->ID . "'>Usuń</button></div>";
                                 }
                                 ?>
                             </div>
@@ -80,15 +80,14 @@ if (!isset($_SESSION['logged']))
                             </header>
                             <div class="friends_list" id="profile_requests">
                                 <?php
-                                $sql = "SELECT users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID)";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID)";
                                 $result = $conn->query($sql);
 
                                 while ($row = $result->fetch_object()) {
-
-                                    echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
-                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button'>Akceptuj</button>
-                                    <button class='delete_friend_button'>Usuń</button></div>";
+                                    echo "<div class='my_friend' id='" . $row->ID  . "requests'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" .  $row->picture . "' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button' data-info='" . $row->ID . ",akceptuj'>Akceptuj</button><button class='delete_friend_button' data-info='" . $row->ID . ",delete'>Usuń</button></div>";
+                                    // echo 'alt="zdjęcie profilowe" class="friend_profile" /></p><button class="accept_friend_button" data-user='["' . $row->ID . '"action"]'>Akceptuj</button><button class="delete_friend_button">Usuń</button></div>';
+                                    // echo 'alt="zdjęcie profilowe" class="friend_profile"/></p><button class="accept_friend_button" data-info="' . $row->ID . ',accept">Akceptuj</button><button class="delete_friend_button" data-info="' . $row->ID . ',delete">Usuń</button></div>';
                                 }
 
                                 ?>
@@ -119,6 +118,8 @@ if (!isset($_SESSION['logged']))
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/my_friends_delete.js"></script>
+    <script src="scripts/friends_requests.js"></script>
 </body>
 
 </html>
