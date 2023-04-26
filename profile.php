@@ -85,7 +85,7 @@ if (!isset($_SESSION['logged']))
 
                                 while ($row = $result->fetch_object()) {
                                     echo "<div class='my_friend' id='" . $row->ID  . "requests'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" .  $row->picture . "' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button' data-info='" . $row->ID . ",akceptuj'>Akceptuj</button><button class='delete_friend_button' data-info='" . $row->ID . ",delete'>Usuń</button></div>";
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" .  $row->picture . "' alt='zdjęcie profilowe' class='friend_profile' /></p><button class='accept_friend_button' data-info='" . $row->ID . ",accept'>Akceptuj</button><button class='delete_friend_button' data-info='" . $row->ID . ",delete'>Usuń</button></div>";
                                     // echo 'alt="zdjęcie profilowe" class="friend_profile" /></p><button class="accept_friend_button" data-user='["' . $row->ID . '"action"]'>Akceptuj</button><button class="delete_friend_button">Usuń</button></div>';
                                     // echo 'alt="zdjęcie profilowe" class="friend_profile"/></p><button class="accept_friend_button" data-info="' . $row->ID . ',accept">Akceptuj</button><button class="delete_friend_button" data-info="' . $row->ID . ',delete">Usuń</button></div>';
                                 }

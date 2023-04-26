@@ -9,4 +9,3 @@ if ($conn->query($sql) !== TRUE) {
 } else {
     echo "success";
 }
-$conn->close();
