@@ -1,8 +1,8 @@
-$("#profile_my_friends").on("click", "button", () => {
-    let ID = $("button").attr("data-user");
+$("#profile_my_friends").delegate("button", "click", function () {
+    let ID = $(this).attr("data-user");
     $.post("friend_delete_query.php", { ID_USER: "'" + ID + "'" }, function (data) {
         if (data == "success") {
-            $("div#" + ID + "my_friends").css("display", "none");
+            $("div#" + ID + "my_friends").remove();
         }
     })
 });

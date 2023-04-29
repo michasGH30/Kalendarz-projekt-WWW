@@ -7,12 +7,14 @@ $("#profile_requests").on("click", ".accept_friend_button, .delete_friend_button
         $("#" + data[0] + "requests .delete_friend_button").removeAttr("data-info");
         $("#" + data[0] + "requests .delete_friend_button").attr("data-user", data[0]);
         $($("#" + data[0] + "requests").clone().attr("id", data[0] + "my_friends")).appendTo("#profile_my_friends");
+        $.post("friends_requests_accept.php", { ID_USER: data[0], ACTION: data[1] }, function (dane) {
+            console.log(dane);
+        })
+    }
+    else {
+        $.post("friends_requests_delete.php", { ID_USER: data[0], ACTION: data[1] }, function (dane) {
+            console.log(dane);
+        })
     }
     $("#" + data[0] + "requests").remove();
-
-    // $.post("friend_requests_query.php", { ID_USER: "'" + data[0] + "'", ACTION: "'" + data[1] + "'" }, function (data) {
-    //     if (data == "success") {
-    //         console.log("Udało się lol");
-    //     }
-    // })
 });
