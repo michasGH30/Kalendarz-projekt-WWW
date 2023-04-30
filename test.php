@@ -31,7 +31,7 @@ include("session.php");
 
     </div>
 
-    <script src="scripts/test.js"></script>
+    <!-- <script src="scripts/test.js"></script> -->
 </body>
 
 </html>

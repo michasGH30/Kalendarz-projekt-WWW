@@ -27,22 +27,23 @@ if (!isset($_SESSION['logged']))
                 </a>
             </header>
             <div class="arrows">
-                <div>
+                <div id="left_div">
                     <a class="al" id="left"><span></span></a>
                 </div>
 
                 <div>
+                    <h2 id="month_name"></h2>
                     <?php
-                    $sql = 'SET @@lc_time_names = "pl_PL"';
-                    $conn->query($sql);
-                    $sql = "SELECT MONTHNAME(CURRENT_TIMESTAMP) as month_name FROM meetings ";
-                    $result = $conn->query($sql);
-                    $row = $result->fetch_object();
+                    // $sql = 'SET @@lc_time_names = "pl_PL"';
+                    // $conn->query($sql);
+                    // $sql = "SELECT MONTHNAME(CURRENT_TIMESTAMP) as month_name FROM meetings";
+                    // $result = $conn->query($sql);
+                    // $row = $result->fetch_object();
 
-                    // ucfirst Zamiana Pierwszej Litery Na Dużą
-                    // https://stackoverflow.com/a/29166736
-                    $month_name = ucfirst($row->month_name);
-                    echo "<h2>" . $month_name . "</h2>";
+                    // // ucfirst Zamiana Pierwszej Litery Na Dużą
+                    // // https://stackoverflow.com/a/29166736
+                    // $month_name = ucfirst($row->month_name);
+                    // echo "<h2>" . $month_name . "</h2>";
                     ?>
                 </div>
                 <div id="right_div">
@@ -124,7 +125,7 @@ if (!isset($_SESSION['logged']))
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
-    <script src="scripts/test.js"></script>
+    <script src="scripts/index_meetings.js"></script>
 </body>
 
 </html>
