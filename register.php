@@ -35,6 +35,9 @@ else if (isset($_POST["login"])) {
         $_SESSION["date_of_join"] = $date;
         $_SESSION["img_path"] = $path;
         $_SESSION["logged"] = true;
+        $currentDate = getdate();
+        $_SESSION["mm"] = $currentDate["mon"];
+        $_SESSION["yy"] = $currentDate["year"];
         header("location: index.php");
     }
 }

@@ -41,11 +41,11 @@ if (!isset($_POST["day"])) {
                                 <h3>Szczegóły spotkania</h3>
                             </header>
                             <div>
-                                <form action='add_meeting_query.php' method='post'>
-                                    <h4>Tytuł spotkiania</h4>
-                                    <input type='text' name='title' id='title'>
-                                    <h4>Data spotkania</h4>
-                                    <input type='date' name='date' id='date' value='<?= $_POST["year"] . "-" . $_POST["month"] . "-" . $_POST["day"] ?>'>
+                                <!-- <form action='add_meeting_query.php' method='post'> -->
+                                <h4>Tytuł spotkiania</h4>
+                                <input type='text' name='title' id='title'>
+                                <h4>Data spotkania</h4>
+                                <input type='date' name='date' id='date' value='<?= $_POST["year"] . "-" . $_POST["month"] . "-" . $_POST["day"] ?>'>
                             </div>
                             <button class='add_meeting_button'>Dodaj spotkanie</button>
                         </article>

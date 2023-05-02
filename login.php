@@ -17,6 +17,9 @@ if (isset($_POST["login"]) && !isset($_SESSION["logged"])) {
         $_SESSION["date_of_join"] = date('d.m.Y', $date_of_join);
         $_SESSION["img_path"] = $credentials->picture;
         $_SESSION["logged"] = true;
+        $currentDate = getdate();
+        $_SESSION["mm"] = $currentDate["mon"];
+        $_SESSION["yy"] = $currentDate["year"];
         header("Location: index.php");
     } else {
         $_SESSION["wronglp"] = true;

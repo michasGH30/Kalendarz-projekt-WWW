@@ -1,3 +1,3 @@
 <?php
 
-echo "Tu coś będzie kiedyś";
+var_dump($_POST);
