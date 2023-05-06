@@ -51,9 +51,13 @@ if (!isset($_GET["mID"])) {
                                 while ($row = $result->fetch_object()) {
 
                                     echo "<div>
-                                        <form action='meeting_edit_query.php' method='post'>
-                                        <h4>Tytuł spotkiania</h4> <input type='text' name='title' id='title'value='" . $row->title . "'>
-                                        <h4>Data spotkania</h4><input type='date' name='date' id='date' value='" . $row->date . "'></div><button class='edit_button'>Edytuj</button>";
+                                            <input type='hidden' value='$mID' id='mID'>
+                                            <h4>Tytuł spotkiania</h4>
+                                            <input type='text' name='title' id='title'value='" . $row->title . "'>
+                                            <h4>Data spotkania</h4>
+                                            <input type='date' name='date' id='date' value='" . $row->date . "'>
+                                        </div>
+                                        <button class='edit_button' id='edit'>Edytuj</button>";
                                 }
                                 ?>
                             </div>
@@ -75,7 +79,7 @@ if (!isset($_GET["mID"])) {
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
                                     echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
                                     <label for='$row->ID''>Uczestnik</label>
-                                    <input type='checkbox' name='users' value='$row->ID' id='$row->ID'";
+                                    <input type='checkbox' name='users' data-user='" . $row->ID . "' id='$row->ID'";
                                     $member = $conn->query("SELECT ID FROM meetings_members WHERE meetings_members.ID_meeting = $mID AND meetings_members.ID_user = $row->ID");
                                     if ($member->num_rows > 0) {
                                         echo "checked";
@@ -111,6 +115,7 @@ if (!isset($_GET["mID"])) {
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/edit_meeting.js"></script>
 </body>
 
 </html>

@@ -34,15 +34,14 @@ if (!isset($_SESSION['logged']))
 
                     <?php
                     $ID = $_SESSION["ID"];
-                    $sql = "SELECT meetings.title, meetings.date FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) <= 0 AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) >= -7";
+                    $sql = "SELECT meetings.ID, meetings.title, meetings.date FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) <= 0 AND (DAY(CURRENT_TIMESTAMP)-DAY(meetings.date)) >= -7 AND MONTH(CURRENT_TIMESTAMP) = MONTH(meetings.date)";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_object()) {
-
                             echo "<div class='meeting_n'>
                             <article>
                                 <header>
-                                    <h3>" . $row->title . "</h3>
+                                    <a class='meeting_details' href='meeting.php?mID=$row->ID'><h3>" . $row->title . "</h3></a>
                                     <p>
                                         Dzień: " . $row->date . "
                                     </p>
@@ -53,7 +52,8 @@ if (!isset($_SESSION['logged']))
                     } else {
                         echo "Nie masz żadnych najbliższych spotkań. Nikt cię nie zaprasza szkoda :(";
                     }
-
+                    // <div class='meetings'>";
+                    // echo "<a class='meeting_details' href='meeting.php?mID=$row->ID'><div class='meeting'>" . $row->title . "</div></a>
                     ?>
             </section>
         </main>

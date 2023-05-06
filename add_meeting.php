@@ -41,13 +41,12 @@ if (!isset($_POST["day"])) {
                                 <h3>Szczegóły spotkania</h3>
                             </header>
                             <div>
-                                <!-- <form action='add_meeting_query.php' method='post'> -->
                                 <h4>Tytuł spotkiania</h4>
                                 <input type='text' name='title' id='title'>
                                 <h4>Data spotkania</h4>
                                 <input type='date' name='date' id='date' value='<?= $_POST["year"] . "-" . $_POST["month"] . "-" . $_POST["day"] ?>'>
                             </div>
-                            <button class='add_meeting_button'>Dodaj spotkanie</button>
+                            <button class='add_meeting_button' id="submit">Dodaj spotkanie</button>
                         </article>
                     </div>
 
@@ -65,7 +64,7 @@ if (!isset($_POST["day"])) {
                                     echo "<div class='my_friend'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
                                     <label for='$row->ID''>Dodaj</label>
-                                    <input type='checkbox' name='users' value='$row->ID' id='$row->ID'>
+                                    <input type='checkbox' name='users' data-user='" . $row->ID . "' id='$row->ID'>
                                 </div>";
                                 }
                                 ?>
@@ -97,6 +96,7 @@ if (!isset($_POST["day"])) {
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/add_meeting.js"></script>
 </body>
 
 </html>
