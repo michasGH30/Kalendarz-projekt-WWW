@@ -47,9 +47,9 @@ if (!isset($_GET["mID"])) {
                             while ($row = $result->fetch_object()) {
                                 $date = strtotime($row->date);
                                 $date_f = date('d.m.Y', $date);
-                                echo "<div>
+                                echo "<div data-user='" . $row->ID . "'' id='meeting'>
                                         <h4>Tytuł spotkiania</h4><p>" . $row->title . "</p>
-                                        <h4>Data spotkania</h4><p>" . $date_f . "</p></div><a href='meeting_edit.php?mID=$mID' class='edit_button'>Edytuj</a>";
+                                        <h4>Data spotkania</h4><p>" . $date_f . "</p></div><a href='meeting_edit.php?mID=$mID' class='edit_button'>Edytuj</a><br><br><button id='delete' class='delete_friend_button'>Usuń</button>";
                             }
                             ?>
                         </article>
@@ -65,7 +65,7 @@ if (!isset($_GET["mID"])) {
                                 $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT meetings_members.ID_user FROM meetings_members WHERE meetings_members.ID_meeting = $mID) ORDER BY users.ID";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
+                                    echo "<div class='my_friend' data-user='" . $row->ID . "'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
                                     echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
                                 </div>";
@@ -99,6 +99,7 @@ if (!isset($_GET["mID"])) {
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/delete_meetings.js"></script>
 </body>
 
 </html>

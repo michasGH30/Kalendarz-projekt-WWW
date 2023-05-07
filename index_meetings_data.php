@@ -12,7 +12,8 @@ $ID = $_SESSION["ID"];
 $mm = $_SESSION["mm"];
 $yy = $_SESSION["yy"];
 $day_count = cal_days_in_month(CAL_GREGORIAN, $mm, $yy);
-
+$sql = 'SET @@lc_time_names = "pl_PL"';
+$conn->query($sql);
 for ($i = 1; $i <= $day_count; $i++) {
     $sql = "SELECT meetings.ID, meetings.title, meetings.date, DAYNAME(meetings.date) AS day_name FROM meetings, meetings_members WHERE meetings_members.ID_user = $ID AND meetings_members.ID_meeting = meetings.ID AND DAY(meetings.date) = $i AND MONTH(meetings.date) = $mm ORDER BY meetings.ID";
     $day_to_add;
