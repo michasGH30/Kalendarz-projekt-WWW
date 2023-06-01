@@ -43,9 +43,9 @@ if (!isset($_SESSION['logged']))
                                 $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID)";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
+                                    echo "<div class='my_friend' id='" . $row->ID . "my_friends'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
-                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button'>Usuń</button></div>";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='delete_friend_button' data-user='" . $row->ID . "'>Usuń</button></div>";
                                 }
                                 ?>
                             </div>
@@ -62,9 +62,9 @@ if (!isset($_SESSION['logged']))
                                 $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID NOT IN (SELECT friends.ID_friend from friends WHERE friends.ID_user = $ID) AND users.ID NOT IN (SELECT friends_request.ID_friend from friends_request WHERE friends_request.ID_user = $ID) AND users.ID != $ID";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
+                                    echo "<div class='my_friend' id='" . $row->ID . "add'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
-                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='add_f_button'>Dodaj</button></div>";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p><button class='add_f_button' data-user='" . $row->ID . "'>Dodaj</button></div>";
                                 }
                                 ?>
                             </div>
@@ -95,6 +95,8 @@ if (!isset($_SESSION['logged']))
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/friends_add_new.js"></script>
+    <script src="scripts/friends_delete.js"></script>
 </body>
 
 </html>

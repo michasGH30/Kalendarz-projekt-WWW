@@ -11,8 +11,12 @@ if ($conn->query($sql) !== TRUE) {
 }
 $sql = "INSERT INTO friends VALUES (NULL, $ID, $ID_USER)";
 if ($conn->query($sql) !== TRUE) {
-    echo "Nie udało się dodać znajomego, po usunięciu zaproszenia. Dane: $ID_USER, $ACTION";
+    echo "Nie udało się dodać znajomego do ciebie, po usunięciu zaproszenia. Dane: $ID_USER, $ACTION";
     echo $conn->errno;
 }
-
+$sql = "INSERT INTO friends VALUES (NULL, $ID_USER, $ID)";
+if ($conn->query($sql) !== TRUE) {
+    echo "Nie udało się dodać znajomego do znajomego, po usunięciu zaproszenia. Dane: $ID_USER, $ACTION";
+    echo $conn->errno;
+}
 echo "success";

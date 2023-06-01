@@ -8,6 +8,11 @@ $ID = $_SESSION["ID"];
 $sql = "DELETE FROM friends_request WHERE ID_user = $ID AND ID_friend = $ID_USER";
 if ($conn->query($sql) !== TRUE) {
     echo "Nie udało się usunąć zaproszenia. Dane: $ID_USER, $ACTION";
-} else {
-    echo "success";
 }
+
+$sql = "DELETE FROM friends_request WHERE ID_user = $ID_USER AND ID_friend = $ID";
+if ($conn->query($sql) !== TRUE) {
+    echo "Nie udało się usunąć zaproszenia. Dane: $ID_USER, $ACTION";
+}
+
+echo "success";
