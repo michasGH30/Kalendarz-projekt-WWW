@@ -42,14 +42,20 @@ if (!isset($_GET["mID"])) {
                             <?php
                             $mID = $_GET["mID"];
                             // $mID = 8;
-                            $sql = "SELECT meetings.ID, meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
+                            $sql = "SELECT meetings.ID, meetings.title, meetings.date, meetings.ID_creator FROM meetings WHERE meetings.ID = $mID";
                             $result = $conn->query($sql);
+                            $ID = $_SESSION["ID"];
                             while ($row = $result->fetch_object()) {
                                 $date = strtotime($row->date);
                                 $date_f = date('d.m.Y', $date);
                                 echo "<div data-user='" . $row->ID . "'' id='meeting'>
                                         <h4>Tytuł spotkiania</h4><p>" . $row->title . "</p>
-                                        <h4>Data spotkania</h4><p>" . $date_f . "</p></div><a href='meeting_edit.php?mID=$mID' class='edit_button'>Edytuj</a><br><br><button id='delete' class='delete_friend_button'>Usuń</button>";
+                                        <h4>Data spotkania</h4><p>" . $date_f . "</p>";
+                                if ($row->ID_creator == $ID) {
+                                    echo "</div><a href='meeting_edit.php?mID=$mID' class='edit_button'>Edytuj</a><br><br><button id='delete' class='delete_friend_button'>Usuń</button>";
+                                } else {
+                                    echo "<button id='leave' class='leave' data-meeting='$mID'>Opuść spotkanie</button>";
+                                }
                             }
                             ?>
                         </article>
@@ -100,6 +106,7 @@ if (!isset($_GET["mID"])) {
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
     <script src="scripts/delete_meetings.js"></script>
+    <script src="scripts/leave_meeting.js"></script>
 </body>
 
 </html>

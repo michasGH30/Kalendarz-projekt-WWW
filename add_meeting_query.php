@@ -7,7 +7,7 @@ $ID = $_SESSION["ID"];
 $arr = array_values(json_decode($_REQUEST["dataR"], true));
 $arr2 = array_values(json_decode($_REQUEST["checked"], true));
 
-$sql = "INSERT INTO meetings(ID, title, date) VALUES(NULL, '$title', '$date')";
+$sql = "INSERT INTO meetings(ID, title, date, ID_creator) VALUES(NULL, '$title', '$date', '$ID')";
 if ($conn->query($sql) === NULL) {
     echo "Nie udało się dodać spotkania. $conn->error\n";
 } else {
