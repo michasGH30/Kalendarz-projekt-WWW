@@ -56,13 +56,26 @@ if (!isset($_POST["day"])) {
                                 <h3>Dodaj uczestników</h3>
                             </header>
                             <div class="users">
+                                <div>
+                                    <button id="changeVisibleFriends" disabled>Pokaż znajomych</button>
+                                    <button id="changeVisibleOthers">Pokaż innych</button>
+                                </div>
                                 <?php
                                 $ID = $_SESSION["ID"];
-                                $sql = "SELECT users.ID, users.name, users.surname FROM users WHERE users.ID !=$ID";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID AND users.ID IN(SELECT friends.ID_friend FROM friends WHERE friends.ID_user = $ID)";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
-                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='img/profile.png' alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    echo "<div class='my_friend friendsOnMeeting'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "' alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    <label for='$row->ID''>Dodaj</label>
+                                    <input type='checkbox' name='users' data-user='" . $row->ID . "' id='$row->ID'>
+                                </div>";
+                                }
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID AND users.ID NOT IN(SELECT friends.ID_friend FROM friends WHERE friends.ID_user = $ID)";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend othersOnMeeting'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "' alt='zdjęcie profilowe' class='friend_profile' /></p>
                                     <label for='$row->ID''>Dodaj</label>
                                     <input type='checkbox' name='users' data-user='" . $row->ID . "' id='$row->ID'>
                                 </div>";
@@ -96,6 +109,7 @@ if (!isset($_POST["day"])) {
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/change_visibility_on_meetings.js"></script>
     <script src="scripts/add_meeting.js"></script>
 </body>
 

@@ -366,3 +366,7 @@ input[type="date"] {
 .meeting_about {
 	min-width: 60vh;
 }
+
+.currentDate {
+	outline: red solid 10px;
+}

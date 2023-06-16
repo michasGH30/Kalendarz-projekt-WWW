@@ -5,7 +5,7 @@ $(document).ready(function () {
     let pr = $("#profile_requests").height();
     let pmf = $("#profile_my_friends").height();
     let mu = $("#meeting_users").height();
-    let u = $(".users").height();
+    // let u = $(".users").height();
     let m = $(".meetings_n").height();
     let d = $("#days").height();
     let mam = $("#meeting_add_mem").height();
@@ -32,10 +32,10 @@ $(document).ready(function () {
     if (vh >= 0.3) {
         $("#profile_my_friends").css("overflow-y", "scroll");
     }
-    vh = u / w;
-    if (vh >= 0.35) {
-        $(".users").css("overflow-y", "scroll");
-    }
+    // vh = u / w;
+    // if (vh >= 0.35) {
+    //     $(".users").css("overflow-y", "scroll");
+    // }
     vh = m / w;
     // alert(vh);
     if (vh >= 0.35) {

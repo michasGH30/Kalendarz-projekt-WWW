@@ -44,7 +44,6 @@ if (!isset($_GET["mID"])) {
                             <div>
                                 <?php
                                 $mID = $_GET["mID"];
-                                // $mID = 8;
                                 $ID = $_SESSION["ID"];
                                 $sql = "SELECT meetings.title, meetings.date FROM meetings WHERE meetings.ID = $mID";
                                 $result = $conn->query($sql);
@@ -70,12 +69,29 @@ if (!isset($_GET["mID"])) {
                                 <h3>Dodaj uczestników</h3>
                             </header>
                             <div class="users">
+                                <div>
+                                    <button id="changeVisibleFriends" disabled>Pokaż znajomych</button>
+                                    <button id="changeVisibleOthers">Pokaż innych</button>
+                                </div>
                                 <?php
-
-                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID";
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID AND users.ID IN (SELECT friends.ID_friend FROM friends WHERE friends.ID_user = $ID)";
                                 $result = $conn->query($sql);
                                 while ($row = $result->fetch_object()) {
-                                    echo "<div class='my_friend'>
+                                    echo "<div class='my_friend friendsOnMeeting'>
+                                    <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
+                                    echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
+                                    <label for='$row->ID''>Uczestnik</label>
+                                    <input type='checkbox' name='users' data-user='" . $row->ID . "' id='$row->ID'";
+                                    $member = $conn->query("SELECT ID FROM meetings_members WHERE meetings_members.ID_meeting = $mID AND meetings_members.ID_user = $row->ID");
+                                    if ($member->num_rows > 0) {
+                                        echo "checked";
+                                    }
+                                    echo "></div>";
+                                }
+                                $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID AND users.ID NOT IN(SELECT friends.ID_friend FROM friends WHERE friends.ID_user = $ID)";
+                                $result = $conn->query($sql);
+                                while ($row = $result->fetch_object()) {
+                                    echo "<div class='my_friend othersOnMeeting'>
                                     <p class='my_friend_p'>" . $row->name . " " . $row->surname . "<img src='" . $row->picture . "'";
                                     echo "alt='zdjęcie profilowe' class='friend_profile' /></p>
                                     <label for='$row->ID''>Uczestnik</label>
@@ -115,6 +131,7 @@ if (!isset($_GET["mID"])) {
     </footer>
     <script src="scripts/script.js"></script>
     <script src="scripts/scroll.js"></script>
+    <script src="scripts/change_visibility_on_meetings.js"></script>
     <script src="scripts/edit_meeting.js"></script>
 </body>
 
