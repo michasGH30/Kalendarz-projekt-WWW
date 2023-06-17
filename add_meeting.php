@@ -57,8 +57,8 @@ if (!isset($_POST["day"])) {
                             </header>
                             <div class="users">
                                 <div>
-                                    <button id="changeVisibleFriends" disabled>Pokaż znajomych</button>
-                                    <button id="changeVisibleOthers">Pokaż innych</button>
+                                    <button id="changeVisibleFriends" class="friends_meeting">Znajomi</button>
+                                    <button id="changeVisibleOthers" class="others_meeting">Pokaż innych</button>
                                 </div>
                                 <?php
                                 $ID = $_SESSION["ID"];

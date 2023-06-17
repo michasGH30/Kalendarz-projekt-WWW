@@ -70,8 +70,8 @@ if (!isset($_GET["mID"])) {
                             </header>
                             <div class="users">
                                 <div>
-                                    <button id="changeVisibleFriends" disabled>Pokaż znajomych</button>
-                                    <button id="changeVisibleOthers">Pokaż innych</button>
+                                    <button id="changeVisibleFriends" class="friends_meeting">Znajomi</button>
+                                    <button id="changeVisibleOthers" class="others_meeting">Pokaż innych</button>
                                 </div>
                                 <?php
                                 $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID AND users.ID IN (SELECT friends.ID_friend FROM friends WHERE friends.ID_user = $ID)";
