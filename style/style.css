@@ -370,3 +370,8 @@ input[type="date"] {
 .currentDate {
 	outline: red solid 10px;
 }
+
+#who {
+	margin-top: 10px;
+	border: 1px solid white;
+}

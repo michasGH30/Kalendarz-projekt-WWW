@@ -60,6 +60,7 @@ if (!isset($_POST["day"])) {
                                     <button id="changeVisibleFriends" class="friends_meeting">Znajomi</button>
                                     <button id="changeVisibleOthers" class="others_meeting">Pokaż innych</button>
                                 </div>
+                                <div id="who">Znajomi</div>
                                 <?php
                                 $ID = $_SESSION["ID"];
                                 $sql = "SELECT users.ID, users.name, users.surname, users.picture FROM users WHERE users.ID !=$ID AND users.ID IN(SELECT friends.ID_friend FROM friends WHERE friends.ID_user = $ID)";
