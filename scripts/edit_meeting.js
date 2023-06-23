@@ -15,7 +15,7 @@ $("#edit").on("click", function () {
     $.post("meeting_edit_query.php", data_post,
         function (data) {
             console.log(data);
-            window.location.href = 'http://localhost/projekt/index.php';
+            window.location.href = window.location.protocol + '//' + window.location.hostname + '/projekt/index.php';
         }
     );
 });
